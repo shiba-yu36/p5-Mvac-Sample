@@ -8,6 +8,7 @@ use File::Spec;
 
 use lib join '/', File::Spec->splitdir(dirname(__FILE__)), 'lib';
 use lib join '/', File::Spec->splitdir(dirname(__FILE__)), '..', 'lib';
+use local::lib join '/', File::Spec->splitdir(dirname(__FILE__)), '..', 'extlib';
 
 # Check if Mojo is installed
 eval 'use Mojolicious::Commands';
@@ -20,5 +21,9 @@ EOF
 # Application
 $ENV{MOJO_APP} ||= 'Mvac::Sample';
 
-# Start commands
-Mojolicious::Commands->start;
+use Plack::Builder;
+builder {
+    enable "Plack::Middleware::Static",
+        path => qr{^/(images|js|css|photos)/}, root => "statics/";
+    Mojolicious::Commands->start;
+};

@@ -47,7 +47,7 @@ sub startup {
 
     # static file path
     my $static = Mojolicious::Static->new;
-    $static->root('static');
+    $static->root('statics');
     $self->static($static);
 
     # json config plugin
