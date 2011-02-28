@@ -1,0 +1,14 @@
+product:
+    title:
+        NOT_BLANK: タイトルは必須です
+        LENGTH: タイトルは100文字以内にしてください
+    description:
+        NOT_BLANK: 説明文は必須です
+    type:
+        DEFAULT: タイプが間違っています
+    small_image:
+        NOT_BLANK: 画像(小)は必須です
+        INVALID_IMAGE: 画像(小)にはjpeg, png, gifを指定してください
+    large_image:
+        NOT_BLANK: 画像(大)は必須です
+        INVALID_IMAGE: 画像(大)にはjpeg, png, gifを指定してください

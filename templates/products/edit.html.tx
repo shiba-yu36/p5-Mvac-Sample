@@ -1,0 +1,58 @@
+: cascade layouts::products
+
+: around body -> {
+
+<h3>製品編集</h3>
+: my $product = $app.product_from_req
+: block form | fillinform($c.req) -> {
+
+: display_form_errors($app, 'product')
+<form action="/products/update" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="<: $product.id :>" />
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td>
+        <textarea name="title" rows="2" cols="20"><: $product.get_column('title') :></textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>説明文</th>
+      <td>
+        <textarea name="description" rows="4" cols="40"><: $product.get_column('description') :></textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>タイプ</th>
+      <td>
+        <select name="type">
+          : my $type = $product.get_column('type')
+          <option value="original" selected_if_equal($type, 'original')>オリジナル</option>
+          <option value="oem" selected_if_equal($type, 'oem')>OEM</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>画像(小)</th>
+      <td>
+        : if $product.get_column('small_image_url') {
+        <img src="<: $product.get_column('small_image_url') :>" /><br />
+        : }
+        <input type="file" name="small_image" />
+      </td>
+    </tr>
+    <tr>
+      <th>画像(大)</th>
+      <td>
+        : if $product.get_column('large_image_url') {
+        <img src="<: $product.get_column('large_image_url') :>" /><br />
+        : }
+        <input type="file" name="large_image" />
+      </td>
+    </tr>
+  </table>
+  <input type="submit" value="送信" />
+</form>
+: }
+
+: }

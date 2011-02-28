@@ -1,0 +1,4 @@
+{
+  "photo_upload_dir" : "<%= app->home->rel_dir('statics/photos/upload') %>/",
+  "photo_upload_path" : "/photos/upload/"
+}

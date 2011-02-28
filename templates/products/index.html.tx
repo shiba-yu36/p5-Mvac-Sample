@@ -1,0 +1,22 @@
+: cascade layouts::products
+
+: around body -> {
+<h2>商品管理</h2>
+
+<div class="add-product">
+  <a href="/products/new">製品を追加する</a>
+</div>
+
+<div class="original-products products-list">
+  <h3>オリジナル</h3>
+  : include "products/_items_table.html.tx" {items => $app.original_products}
+</div>
+
+<div class="oem-products products-list">
+  <h3>OEM</h3>
+  : include "products/_items_table.html.tx" {items => $app.oem_products}
+</div>
+
+
+
+: }

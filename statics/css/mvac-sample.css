@@ -1,0 +1,17 @@
+.products-list table {
+
+}
+
+.products-list table img {
+  max-width: 200px;
+}
+
+.add-product {
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-product a {
+  font-size: 14px;
+}

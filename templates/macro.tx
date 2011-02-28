@@ -1,0 +1,15 @@
+: macro display_form_errors -> ($app, $key) {
+:     if ($app && $app.form && $app.form.has_error) {
+      <div class="errors">
+:         for $app.form.messages($key) -> $error {
+            <div class="error"><: $error :></div>
+:         }
+      </div>
+:     }
+: }
+
+: macro selected_if_equal -> ($item1, $item2) {
+:     if ($item1 == $item2) {
+      selected
+:     }
+: }

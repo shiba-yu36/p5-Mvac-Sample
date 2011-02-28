@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>画像(小)</th>
+    <th>編集</th>
+    <th>順序</th>
+    <th>削除</th>
+  </tr>
+
+  : for $items -> $item {
+  <tr>
+    <td><: $item.title | html_line_break :></td>
+    <td>
+      <img src="<: $item.small_image_url :>" />
+    </td>
+    <td>
+      <a href="/products/edit/<: $item.id :>">
+        編集
+      </a>
+    </td>
+    <td>
+      <form method="post" action="/products/order_up">
+        <input type="hidden" name="id" value="<: $item.id :>" />
+        <input type="submit" value="上へ" />
+      </form>
+      <form method="post" action="/products/order_down">
+        <input type="hidden" name="id" value="<: $item.id :>" />
+        <input type="submit" value="下へ" />
+      </form>
+    </td>
+    <td>
+      <form method="post" action="/products/delete">
+        <input type="hidden" name="id" value="<: $item.id :>" />
+        <input type="submit" value="削除" onclick='return confirm("本当に消去してもよろしいですか？")' />
+      </form>
+    </td>
+  </tr>
+  : }
+
+</table>

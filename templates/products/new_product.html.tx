@@ -1,0 +1,42 @@
+: cascade layouts::products
+
+: around body -> {
+
+<h3>製品追加</h3>
+: block form | fillinform($c.req) -> {
+
+: display_form_errors($app, 'product')
+<form action="/products/create" method="POST" enctype="multipart/form-data">
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td><textarea name="title" rows="2" cols="20"></textarea></td>
+    </tr>
+    <tr>
+      <th>説明文</th>
+      <td><textarea name="description" rows="4" cols="40"></textarea></td>
+    </tr>
+    <tr>
+      <th>タイプ</th>
+      <td>
+        <select name="type">
+          <option value="original">オリジナル</option>
+          <option value="oem">OEM</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>画像(小)</th>
+      <td><input type="file" name="small_image" /></td>
+    </tr>
+    <tr>
+      <th>画像(大)</th>
+      <td><input type="file" name="large_image" /></td>
+    </tr>
+  </table>
+  <input type="submit" value="送信" />
+</form>
+: }
+
+
+: }
